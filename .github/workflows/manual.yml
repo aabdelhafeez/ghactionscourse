@@ -1,0 +1,47 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: "Select the deployment environment"
+        required: true
+        default: "dev"
+        type: choice
+        options:
+          - dev
+          - test
+          - prod
+
+      run_tests:
+        description: "Run tests?"
+        required: true
+        default: true
+        type: boolean
+
+      version:
+        description: "Application version"
+        required: false
+        default: "1.0.0"
+        type: string
+
+jobs:
+  manual-job:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Display inputs
+        run: |
+          echo "Environment: ${{ github.event.inputs.environment }}"
+          echo "Run Tests: ${{ github.event.inputs.run_tests }}"
+          echo "Version: ${{ github.event.inputs.version }}"
+
+      - name: Run tests
+        if: ${{ github.event.inputs.run_tests == 'true' }}
+        run: echo "Running tests..."
+
+      - name: Deploy
+        run: echo "Deploying version ${{ github.event.inputs.version }} to ${{ github.event.inputs.environment }}"
