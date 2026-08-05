@@ -1,0 +1,8 @@
+{
+  "name": "calculator-nodejs",
+  "version": "1.0.0",
+  "main": "calculator.js",
+  "scripts": {
+    "test": "node node-test.js"
+  }
+}
