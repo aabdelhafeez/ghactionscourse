@@ -37,7 +37,7 @@ function evaluateExpression(expression) {
   const result = Function('"use strict"; return (' + sanitized + ')')();
 
   if (!Number.isFinite(result) || Number.isNaN(result)) {
-    throw new Error('Invalid calculation');
+    throw new Error('Invalid. calculation');
   }
 
   return String(result);
