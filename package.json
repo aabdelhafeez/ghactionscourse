@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "main": "src/calculator.js",
   "scripts": {
-    "test": "node node-test.js"
+    "test": "node src/node-test.js"
   }
 }
